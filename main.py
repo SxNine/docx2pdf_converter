@@ -7,6 +7,7 @@ import time
 def converting(path):             #! используй *args - для принимания множества аргументов
     now_time = time.localtime()
     now_time = time.strftime("%Y-%m-%d_%H-%M-%S", now_time)
+    print(f"Конвертация {path}")
     output = path.split('.')[0] + "_" + now_time + '.pdf'
     try:
         convert(path, output)
@@ -56,7 +57,8 @@ def main():
         hand_input()
         sys.exit(0)
     else:                         # Автоматический ввод
-        converting(sys.argv[1])
+        for arg in sys.argv[1:]:
+            converting(arg)
         
 if __name__ == "__main__":
     main()
